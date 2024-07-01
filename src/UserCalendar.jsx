@@ -91,9 +91,9 @@ export default function MyCalendar() {
     push(eventsRef, {
       title: newEvent.title,
       phone: newEvent.phone,
-      startDate: dayjs(newEvent.startDate).format('YYYY-MM-DD'),
-      startTime: dayjs(newEvent.startTime).format('HH:mm'),
-      endTime: dayjs(newEvent.endTime).format('HH:mm')
+      startDate: newEvent.startDate,
+      startTime: newEvent.startTime,
+      endTime: newEvent.endTime
     }).then(() => {
       console.log('Event added to Firebase successfully');
     }).catch((error) => {
@@ -111,14 +111,14 @@ export default function MyCalendar() {
   const handleAddEvent = (e) => {
     e.preventDefault();
 
-    const startDate = dayjs(newEvent.startDate);
-    const startDateTime = startDate.hour(newEvent.startTime.hour()).minute(newEvent.startTime.minute());
-    const endDateTime = startDate.hour(newEvent.endTime.hour()).minute(newEvent.endTime.minute());
+    const startDate = dayjs(newEvent.startDate).format('YYYY-MM-DD');
+    // const startDateTime = startDate.hour(newEvent.startTime.hour()).minute(newEvent.startTime.minute());
+    // const endDateTime = startDate.hour(newEvent.endTime.hour()).minute(newEvent.endTime.minute());
 
     const startTimeString = dayjs(newEvent.startTime).format('HH:mm');
     const endTimeString = dayjs(newEvent.endTime).format('HH:mm');
 
-    addNewEvent({ ...newEvent, start: startDateTime.toDate(), end: endDateTime.toDate(), startTime: startTimeString, endTime: endTimeString });
+    addNewEvent({ ...newEvent, startTime: startTimeString, endTime: endTimeString, startDate });
   };
 
   useEffect(() => {

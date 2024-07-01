@@ -42,6 +42,7 @@
 .modal-form {
   display: flex;
   flex-direction: column;
+  gap: 6px
 }
 
 /* Form elements */
@@ -51,7 +52,7 @@
 }
 
 .modal-form input {
-  margin-bottom: 15px;
+  /* margin-bottom: 15px; */
   padding: 10px;
   border-radius: 5px;
   border: 1px solid #ccc;
